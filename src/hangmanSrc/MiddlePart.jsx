@@ -11,7 +11,6 @@ import image6 from './img/hangPic/p6.jpg';
 export const ContentGraphics = ({ noOfWrong, answer, updateNoOfWrong, reset, category }) => {
   const images = [image0, image1, image2, image3, image4, image5, image6];
 
-  // Ensure noOfWrong is within the bounds of the images array
   const imageIndex = Math.min(noOfWrong, images.length - 1);
 
   return (

@@ -9,15 +9,19 @@ const categories = {
 };
 
 function randomWord() {
-  const randomCategory = getRandomCategory(); // Ensure function name is correct
+  const randomCategory = getRandomCategory();
   const words = categories[randomCategory];
+
+  console.log('Selected Category:', randomCategory); // Debug log
+  console.log('Words in Category:', words); // Debug log
+
   return {
-      word: words[Math.floor(Math.random() * words.length)],
-      category: randomCategory
+    word: words[Math.floor(Math.random() * words.length)],
+    category: randomCategory
   };
 }
 
-function getRandomCategory() { // Ensure function name matches
+function getRandomCategory() {
   const categoryKeys = Object.keys(categories);
   return categoryKeys[Math.floor(Math.random() * categoryKeys.length)];
 }

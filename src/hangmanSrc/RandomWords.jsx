@@ -1,19 +1,19 @@
 const categories = {
-  vegetables: ["carrot", "broccoli", "spinach", "potato", "tomato"],
-  fruits: ["apple", "banana", "grape", "orange", "mango"],
-  fastFoods: ["burger", "pizza", "fries", "tacos", "hotdog"],
-  programmingLanguages: ["java", "c", "ruby", "python", "javascript"],
-  science: ["atom", "cell", "gene", "virus", "quasar"],
-  nature: ["forest", "mountain", "river", "desert", "ocean"],
-  country: ["canada", "brazil", "germany", "india", "japan"],
+  Vegetables: ["carrot", "broccoli", "spinach", "potato", "tomato"],
+  Fruits: ["apple", "banana", "grape", "orange", "mango"],
+  FastFoods: ["burger", "pizza", "fries", "tacos", "hotdog"],
+  ProgrammingLanguages: ["java", "c", "ruby", "python", "javascript"],
+  Science: ["atom", "cell", "gene", "virus", "quasar"],
+  Enviroment: ["forest", "mountain", "river", "desert", "ocean"],
+  Country: ["canada", "brazil", "germany", "india", "japan"],
 };
 
 function randomWord() {
   const randomCategory = getRandomCategory();
   const words = categories[randomCategory];
 
-  console.log('Selected Category:', randomCategory); // Debug log
-  console.log('Words in Category:', words); // Debug log
+  console.log('Selected Category:', randomCategory); 
+  console.log('Words in Category:', words); 
 
   return {
     word: words[Math.floor(Math.random() * words.length)],

@@ -9,7 +9,6 @@ function App() {
   const [answer, setAnswer] = useState('');
   const [category, setCategory] = useState('');
 
-  // Function to reset the game
   const reset = () => {
     setNoOfWrong(0);
     try {
@@ -21,12 +20,10 @@ function App() {
     }
   };
 
-  // UseEffect to automatically reset the game on startup
   useEffect(() => {
-    reset(); // Automatically trigger reset when component mounts
-  }, []); // Empty dependency array ensures this runs only once on mount
+    reset(); 
+  }, []); 
 
-  // Function to update the number of wrong guesses
   const updateNoOfWrong = (newCount) => {
     setNoOfWrong(newCount);
   };

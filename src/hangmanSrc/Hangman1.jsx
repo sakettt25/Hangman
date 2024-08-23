@@ -29,6 +29,11 @@ class Hangman extends Component {
   }
 
   handleKeyPress(evt) {
+    if (evt.key === 'Enter') {
+      this.props.reset();
+      return;
+    }
+    
     if (evt.key.length === 1 && evt.key.match(/[a-z]/i)) {
       this.handleGuess({ target: { value: evt.key.toLowerCase() } });
     }
@@ -36,6 +41,13 @@ class Hangman extends Component {
 
   handleGuess(evt) {
     let letter = evt.target.value;
+    const gameOver = this.props.noOfWrong >= this.props.maxWrong;
+    const isWinner = this.guessedWord().join("") === this.props.answer;
+
+    if (gameOver || isWinner) {
+      return;
+    }
+
     if (!this.state.guessed.has(letter)) {
       this.setState((st) => ({
         guessed: new Set(st.guessed).add(letter),
@@ -65,7 +77,7 @@ class Hangman extends Component {
             key={letter}
             value={letter}
             onClick={this.handleGuess}
-            disabled={this.state.guessed.has(letter)}
+            disabled={this.state.guessed.has(letter) || this.props.noOfWrong >= this.props.maxWrong || this.guessedWord().join("") === this.props.answer}
             className={`bg-blue-500 text-white rounded-md p-3 mx-1 shadow-md hover:bg-blue-600 disabled:bg-gray-400 text-lg ${
               this.state.guessed.has(letter) ? 'opacity-50 cursor-not-allowed' : ''
             }`}

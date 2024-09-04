@@ -6,11 +6,11 @@ export const Footer = ({ reset }) => (
     <div className="flex justify-center items-center">
       <button
         onClick={reset}
-        className="bg-blue-700 text-white rounded-md p-2 font-semibold hover:bg-slate-700 flex items-center space-x-2"
-        aria-label="Retry the game"  
+        className="bg-blue-700 text-white rounded-md p-1 sm:p-2 font-semibold hover:bg-slate-700 flex items-center space-x-1 sm:space-x-2"
+        aria-label="Retry the game"
       >
-        <span>RETRY</span>
-        <img src={logo} alt="Logo" className="w-4 h-4" />
+        <span className="text-xs sm:text-sm">RETRY</span>
+        <img src={logo} alt="Logo" className="w-3 h-3 sm:w-4 sm:h-4" />
       </button>
     </div>
   </footer>

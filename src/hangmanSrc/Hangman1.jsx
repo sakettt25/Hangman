@@ -78,7 +78,7 @@ class Hangman extends Component {
             value={letter}
             onClick={this.handleGuess}
             disabled={this.state.guessed.has(letter) || this.props.noOfWrong >= this.props.maxWrong || this.guessedWord().join("") === this.props.answer}
-            className={`bg-blue-500 text-white rounded-md p-3 mx-1 shadow-md hover:bg-blue-600 disabled:bg-gray-400 text-lg ${
+            className={`bg-blue-500 text-white rounded-md p-1 sm:p-3 mx-1 shadow-md hover:bg-blue-600 disabled:bg-gray-400 text-sm sm:text-lg ${
               this.state.guessed.has(letter) ? 'opacity-50 cursor-not-allowed' : ''
             }`}
           >
@@ -103,15 +103,15 @@ class Hangman extends Component {
     if (gameOver) gameState = gameStateMessages.loss;
 
     return (
-      <div className="text-black text-center text-lg">
-        <p className="mb-4 text-xl font-semibold">
+      <div className="text-black text-center text-base sm:text-lg">
+        <p className="mb-4 text-base sm:text-xl font-semibold">
           Guessed Left: {this.props.maxWrong - this.props.noOfWrong} / {this.props.maxWrong}
         </p>
-        <p className="mb-4 font-bold text-xl">Category: {this.props.category}</p>
-        <p className="text-6xl mb-4 font-bold tracking-wider">
+        <p className="mb-4 font-bold text-base sm:text-xl">Category: {this.props.category}</p>
+        <p className="text-4xl sm:text-6xl mb-4 font-bold tracking-wider">
           {!gameOver ? this.guessedWord().join(" ") : this.props.answer}
         </p>
-        <p className="mb-6 text-lg">{gameState}</p>
+        <p className="mb-6 text-sm sm:text-lg">{gameState}</p>
       </div>
     );
   }

@@ -31,7 +31,7 @@ function App() {
   return (
     <div className="flex flex-col h-screen">
       <Header />
-      <main className="flex-grow flex">
+      <main className="flex-grow flex flex-col sm:flex-row">
         <ContentGraphics
           noOfWrong={noOfWrong}
           answer={answer}

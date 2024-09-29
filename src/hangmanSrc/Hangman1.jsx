@@ -33,7 +33,7 @@ class Hangman extends Component {
       this.props.reset();
       return;
     }
-    
+
     if (evt.key.length === 1 && evt.key.match(/[a-z]/i)) {
       this.handleGuess({ target: { value: evt.key.toLowerCase() } });
     }
@@ -42,7 +42,7 @@ class Hangman extends Component {
   handleGuess(evt) {
     let letter = evt.target.value;
     const gameOver = this.props.noOfWrong >= this.props.maxWrong;
-    const isWinner = this.guessedWord().join("") === this.props.answer;
+    const isWinner = this.guessedWord().join('') === this.props.answer;
 
     if (gameOver || isWinner) {
       return;
@@ -59,26 +59,26 @@ class Hangman extends Component {
 
   guessedWord() {
     return this.props.answer
-      .split("")
-      .map((letter) => (this.state.guessed.has(letter) ? letter : "_"));
+      .split('')
+      .map((letter) => (this.state.guessed.has(letter) ? letter : '_'));
   }
 
   generateKeypad() {
-    const rows = [
-      "qwertyuiop",
-      "asdfghjkl",
-      "zxcvbnm"
-    ];
+    const rows = ['qwertyuiop', 'asdfghjkl', 'zxcvbnm'];
 
     return rows.map((row, rowIndex) => (
       <div key={rowIndex} className="flex justify-center mb-2">
-        {row.split("").map((letter) => (
+        {row.split('').map((letter) => (
           <button
             key={letter}
             value={letter}
             onClick={this.handleGuess}
-            disabled={this.state.guessed.has(letter) || this.props.noOfWrong >= this.props.maxWrong || this.guessedWord().join("") === this.props.answer}
-            className={`bg-blue-500 text-white rounded-md p-1 sm:p-3 mx-1 shadow-md hover:bg-blue-600 disabled:bg-gray-400 text-sm sm:text-lg ${
+            disabled={
+              this.state.guessed.has(letter) ||
+              this.props.noOfWrong >= this.props.maxWrong ||
+              this.guessedWord().join('') === this.props.answer
+            }
+            className={`bg-blue-500 text-white rounded-md p-2 sm:p-4 mx-1 shadow-md hover:bg-blue-600 disabled:bg-gray-400 text-lg sm:text-2xl ${
               this.state.guessed.has(letter) ? 'opacity-50 cursor-not-allowed' : ''
             }`}
           >
@@ -91,27 +91,37 @@ class Hangman extends Component {
 
   render() {
     const gameOver = this.props.noOfWrong >= this.props.maxWrong;
-    const isWinner = this.guessedWord().join("") === this.props.answer;
+    const isWinner = this.guessedWord().join('') === this.props.answer;
 
-    const gameStateMessages = {  
-      win: "Congrats, You have won the Game 🎉🥳",
-      loss: "Better Luck Next Time 🙂"
+    const gameStateMessages = {
+      win: 'Congrats, You have won the Game 🎉🥳',
+      loss: 'Better Luck Next Time 😭',
     };
-
-    let gameState = this.generateKeypad();
-    if (isWinner) gameState = gameStateMessages.win;
-    if (gameOver) gameState = gameStateMessages.loss;
 
     return (
       <div className="text-black text-center text-base sm:text-lg">
+        {/* Guesses Left */}
         <p className="mb-4 text-base sm:text-xl font-semibold">
           Guessed Left: {this.props.maxWrong - this.props.noOfWrong} / {this.props.maxWrong}
         </p>
+
+        {/* Category */}
         <p className="mb-4 font-bold text-base sm:text-xl">Category: {this.props.category}</p>
-        <p className="text-4xl sm:text-6xl mb-4 font-bold tracking-wider">
-          {!gameOver ? this.guessedWord().join(" ") : this.props.answer}
+
+        {/* Word */}
+        <p className="text-3xl sm:text-5xl mb-4 font-bold tracking-wider">
+          {!gameOver ? this.guessedWord().join(' ') : this.props.answer}
         </p>
-        <p className="mb-6 text-sm sm:text-lg">{gameState}</p>
+
+        {/* Game State: Show either the win/loss message or the keypad */}
+        <p className="mb-6 text-sm sm:text-lg">
+          {isWinner ? gameStateMessages.win : gameOver ? gameStateMessages.loss : null}
+        </p>
+
+        {/* Add margin above keyboard */}
+        <div className="mt-8">
+          {!gameOver && !isWinner && this.generateKeypad()}
+        </div>
       </div>
     );
   }
